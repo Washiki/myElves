@@ -1,4 +1,4 @@
-# MyElves : A simple suit of QOL upgrades
+# MyElves : A simple suite of QOL upgrades
 A collection of scripts and config files I made that make life easier.   
 Scripts are written for the `bash`  terminal.
 
