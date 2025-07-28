@@ -6,7 +6,7 @@ Scripts are written for the `bash`  terminal.
 ## Contents 
 - [Crun](###-Crun)
 - [Proj](###-Proj)
-- [Foil (Now in its own repo)]()
+- [Foil (Now in its own repo)](https://github.com/Washiki/foil)
 - [Templates and Configs](###-template)  
 
 ---
