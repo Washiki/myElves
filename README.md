@@ -1,11 +1,14 @@
-# MyElves : A simple suit of QOL upgrades
+# MyElves : A simple suite of QOL upgrades
 A collection of scripts and config files I made that make life easier.   
 Scripts are written for the `bash`  terminal.
 
+[![Made with Bash](https://img.shields.io/badge/Made%20with-Bash-blue.svg)]()
+[![Runs on WSL](https://img.shields.io/badge/Platform-WSL-lightgrey.svg)]()
+
 (Work in progress)
 ## Contents 
-- [Crun](###-Crun)
-- [Proj](###-Proj)
+- [Crun](#Crun)
+- [Proj](#Proj)
 - [Foil (Now in its own repo)](https://github.com/Washiki/foil)
 - [Templates and Configs](###-template)  
 
@@ -13,8 +16,8 @@ Scripts are written for the `bash`  terminal.
 ## Crun
 Simple script that executes a gcc command for compiling C++ scripts. 
 
-Takes inputs from an `input.txt`, and outputs to both the `console` and `output.txt`
-By default, this executes `test.cpp`, but takes filename as an argument 
+Takes inputs from an `input.txt`, and outputs to both the `console` and `output.txt`.
+By default, this executes `test.cpp`, but takes filename as an argument. 
 
 #### Setup
 In your .bashrc file, add : 
@@ -48,7 +51,7 @@ In the directory with your c++ file, create and input.txt and output.txt as such
 
 ---
 ## Proj
-Even simpler command wrapper script that creates a tag and readme file in a "project" directory. 
+Even simpler command wrapper script that creates a tag and readme file in a project directory. 
 This was born completely out of my laziness to manage tag files and call ctags and whatnot. 
 
 #### Usage
@@ -64,13 +67,14 @@ this will create a directory called `dirname` with the following structure
 └── README.md
 ```
 and adds the files to the .gitignore file. 
+
 Does NOT initialize git by default, most projects don't make it out , though probably should add that. 
 
 ---
 ## Vim Config 
 Its a vim config, with some of my most used Plugins  and a few custom functions. 
 
-Only exists because typing vim is more convenient and faster than dual booting or opening VScode.
+Only exists because typing `vim` is more convenient and faster than dual booting or opening some IDE.
 
 ### Features 
 
@@ -80,10 +84,11 @@ Only exists because typing vim is more convenient and faster than dual booting o
 
 - `<leader>f` : Full file auto indent 
 
-- `Newcp`: takes a template file and copies it onto the file. In this instances, takes from a `template.cpp`
+- `Newcp`: takes a template file and copies it onto the file. In this instance, takes from a `template.cpp`
 
-- `Copy`: Copies the entire file to the wsl clipboard via `Clip.exe`. The alternative to this was rebuilding vim with the + register.
+- `Copy`: Copies the entire file to the wsl clipboard via `Clip.exe`. 
+	"The alternative to this was rebuilding vim with the + register."
 
-- `UpdateTags()` : Checks for the existence of a tags files, and if present, uses `universal-ctags`to update them. This is called whenever the file is saved : Can be slow, but we'll cross that bridge when we get there. 
+- `UpdateTags()` : Checks for the existence of a tags files, and if present, uses `universal-ctags`to update them. This is called whenever the file is saved : Potentially slow for a big codebase, but we'll cross that bridge when we get there. 
 
 
