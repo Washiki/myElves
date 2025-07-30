@@ -5,6 +5,7 @@
 "     sorbet 
 "     habamax
 
+
 "this calls the plugins
 call plug#begin('~/.vim/plugged')
 
@@ -35,6 +36,9 @@ Plug 'lervag/vimtex'
 "sidebar file explorer 
 Plug 'preservim/nerdtree'
 
+"vimlike surrounds and bracketing 
+Plug 'tpope/vim-surround'
+
 "File analysis/ error checking. the W E stuff 
 "Plug 'dense-analysis/ale'
 "Makes things excruciatingly slow. I can't take it. 
@@ -42,6 +46,11 @@ Plug 'preservim/nerdtree'
 " Plugins are now loaded after the call end]
 call plug#end()
 
+"remapping the leader. IMportant. 
+let g:mapleader = ","
+"auto indent code keyremap 
+
+nnoremap <leader>f <Cmd>normal! gg=G<CR>
 
 " NEOCLIDE 
 "this function mplements the nice backspace autocomplete
@@ -205,6 +214,8 @@ set number relativenumber
 set cursorline
 "set cursorcolumn 
 
+colorscheme seoul256
+
 
 " CUSTOM STUFF
 
@@ -223,6 +234,9 @@ command! Copy :%w !clip.exe
 
 "update the tags if we're in a project. 
 autocmd BufWritePost * silent! call UpdateTags()
+
+"autocorrections
+inoreabbrev teh the 
 
 " STARTUP BEHAVIOR
 
