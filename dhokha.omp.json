@@ -1,0 +1,107 @@
+{
+"$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#FFD700",
+          "type": "os",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "time_format": "15:04:05 Jan 2"
+          },
+          "template": "{{ .CurrentDate | date .Format }}",
+          "foreground": "#DCB977",
+          "type": "time",
+          "style": "plain",
+          "postfix": " |"
+        },
+        {
+          "properties": {
+            "threshold": 0
+          },
+          "foreground": "#FFD700",
+          "type": "executiontime",
+          "style": "plain",
+          "postfix": " |"
+        },
+        {
+          "properties": {
+            "style": "full"
+          },
+          "foreground": "#1ac3e0",
+           "template": "{{ .Path }}",
+          "type": "path",
+          "style": "plain",
+          "postfix": " |"
+        },
+        {
+          "properties": {
+            "display_stash_count": true,
+            "display_status": true,
+            "display_upstream_icon": true
+          },
+          "foreground": "#ff7d36",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "foreground": "#539fdc",
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "foreground": "#C74634",
+          "type": "java",
+          "style": "plain"
+        },
+        {
+          "foreground": "#68A063",
+          "type": "node",
+          "style": "plain"
+        },
+        {
+          "foreground": "#00ADD8",
+          "type": "go",
+          "style": "plain"
+        },
+        {
+          "foreground":"#cb3837",
+          "type": "npm",
+          "style": "plain"
+        },
+        {
+          "foreground": "#1d63ed",
+          "type": "docker",
+          "style": "plain"
+        },
+        {
+          "foreground": "##8f48be",
+          "type": "haskell",
+          "style": "plain"
+        },
+        {
+          "foreground": "#f74c00",
+          "type": "rust",
+          "style": "plain"
+        },
+        {
+          "template": "\uf119",
+          "type": "status",
+          "style": "plain"
+        },
+        {
+          "foreground": "#ffffff",
+          "style": "plain",
+          "template": " <#69FF94>\u276f</>",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "version": 3
+}

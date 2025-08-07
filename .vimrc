@@ -216,9 +216,13 @@ set cursorline
 
 colorscheme seoul256
 
+"this is some insane reddit wizardy;
+"by setting this, i can have vim take the terminal's bg as is, and hence;
+"Translucent cool looking vim! Tada~
+highlight Normal cterm=NONE ctermbg=NONE ctermfg=NONE
+
 
 " CUSTOM STUFF
-
 
 nnoremap <CR> :noh<CR>
 "clear highlight when i do find the search term and press enter. 
@@ -242,7 +246,6 @@ inoreabbrev teh the
 
 "open nerdtree by default, typing it is way too hard man
 "au VimEnter *  NERDTree
-"
 "put me directly in the main editor 
 "autocmd VimEnter * execute "normal! \<C-w>w"
 
