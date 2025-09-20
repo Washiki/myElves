@@ -1,8 +1,11 @@
 function foxy{
 param(
 	#type varname value(default)
+
+	#these are dummy values. Replace them with your own. 
 	[string]$ip="172.31.2.4:8080",
-	[string]$url="https://ironport4.iiita.ac.in/"
+	[string]$url="https://ironport4.iiita.ac.in/",
+	[string]$browser="chrome.exe"
 )	
 	$pro = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" 
 	$cur = (Get-ItemProperty -Path $pro -Name ProxyEnable).ProxyEnable
@@ -17,10 +20,11 @@ param(
 		Set-ItemProperty -Path $pro -Name ProxyServer -Value $ip
 		Set-ItemProperty -Path $pro -Name ProxyEnable -Value 1 
 		Write-Output "Proxy has been enabled"
-		Start-Process "chrome.exe" $url
+		Start-Process $browser $url
 	}
-	Get-ItemProperty -Path $pro | Select-Object ProxyEnable, ProxyServer, ProxyOverride, AutoConfigURL
+	Get-ItemProperty -Path $pro | Select-Object ProxyEnable, ProxyServer, ProxyOverride
 }
+
 
 #oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/dhokha.omp.json" | Invoke-Expression
 
