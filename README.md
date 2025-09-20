@@ -71,15 +71,17 @@ and adds the files to the .gitignore file.
 Does NOT initialize git by default, most projects don't make it out , though probably should add that. 
 
 ---
-##Foxy
+## Foxy
 
-Script for Powershell on windows based systems. Toggles your proxy.
+Script for Powershell on windows based systems. 
+Toggles your proxy.
+
 Opens the proxy login on your browser (im sorry, i still use chrome)
-```console
-foxy
-	
-```
+
 Also, outputs the ProxyEnable, ProxyServer and ProxyOverride variables. 
+
+Just type `foxy` in the shell. 
+
 ~~Stands for F#ck Proxy~~
 
 ---
