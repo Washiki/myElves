@@ -5,6 +5,7 @@ Scripts are written for the `bash`  terminal.
 [![Made with Bash](https://img.shields.io/badge/Made%20with-Bash-blue.svg)]()
 [![Runs on WSL](https://img.shields.io/badge/Platform-WSL-lightgrey.svg)]()
 
+
 (Work in progress)
 ## Contents 
 - [Crun](#Crun)
@@ -73,8 +74,7 @@ Does NOT initialize git by default, most projects don't make it out , though pro
 ---
 ## Foxy
 
-Script for Powershell on windows based systems. 
-Toggles your proxy.
+Script for Powershell on windows based systems. <br /> Toggles your proxy.
 
 Opens the proxy login on your browser (im sorry, i still use chrome)
 
