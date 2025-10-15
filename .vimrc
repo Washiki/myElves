@@ -1,4 +1,4 @@
-"  NICE COLORSCHEMES
+
 "    retrobox 
 "    seoul256 //external 
 "     slate
@@ -14,6 +14,15 @@ Plug 'github/copilot.vim'
 
 "intellisense implement, it seems to be fine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"rainbow fart 
+Plug 'Washiki/rainbow-fart.vim'
+
+"token highlighting 
+Plug 'RRethy/vim-illuminate'
+
+"Parenthesis colouring? Goofypana?
+Plug 'kien/rainbow_parentheses.vim'
 
 "emmet
 Plug 'mattn/emmet-vim'
@@ -200,11 +209,11 @@ set wildmenu "this is just the tabcomplete that comes up
 "clears the line when you refresh vim 
 set statusline=
 " Status line left side.
-set statusline+=\ %F\ %y\ %r\ %m\ %h
+set statusline+=\ %F\ %y\ %r\ %m\ %h\ %{get(g:,'fart_text','')}
 " Use a divider to separate the left side from the right side.
 set statusline+=%=
 " Status line right side.
-set statusline+=\ row:\ %l\ col:\ %c\ total:\ %L\ percent:\ %p%% 
+set statusline+=\ row:\ %l\ col:\ %c\ len:\ %L\ :\ %p%% 
 " Show the status on the second to last line.
 set laststatus=2
 
@@ -221,7 +230,6 @@ colorscheme seoul256
 "Translucent cool looking vim! Tada~
 highlight Normal cterm=NONE ctermbg=NONE ctermfg=NONE
 
-
 " CUSTOM STUFF
 
 nnoremap <CR> :noh<CR>
@@ -234,7 +242,7 @@ command! Newcp :0r ~/myElves/template.cpp
 
 "copy to system clipboard (i couldn't go throuhg the hassle of bulding vim to
 "have the + register)
-command! Copy :%w !clip.exe 
+command! Copy %w !clip.exe 
 
 "update the tags if we're in a project. 
 autocmd BufWritePost * silent! call UpdateTags()
@@ -257,5 +265,4 @@ au VimEnter * Copilot disable
 
 "sets colorscheme 
 "colorscheme seoul256
-
 
