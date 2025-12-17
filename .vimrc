@@ -1,9 +1,10 @@
-
+"Color Schemes :
 "    retrobox 
+"    afterglow //external
 "    seoul256 //external 
-"     slate
-"     sorbet 
-"     habamax
+"    slate
+"    sorbet 
+"    habamax
 
 
 "this calls the plugins
@@ -51,6 +52,9 @@ Plug 'tpope/vim-surround'
 "File analysis/ error checking. the W E stuff 
 "Plug 'dense-analysis/ale'
 "Makes things excruciatingly slow. I can't take it. 
+
+"better colorscheme, im tired boss. 
+Plug 'danilo-augusto/vim-afterglow'
 
 " Plugins are now loaded after the call end]
 call plug#end()
@@ -223,7 +227,9 @@ set number relativenumber
 set cursorline
 "set cursorcolumn 
 
-colorscheme seoul256
+"colorscheme seoul256
+colorscheme afterglow
+
 
 "this is some insane reddit wizardy;
 "by setting this, i can have vim take the terminal's bg as is, and hence;
