@@ -11,6 +11,7 @@ Scripts are written for the `bash`  terminal.
 - [Crun](#Crun)
 - [Proj](#Proj)
 - [Foil (Now in its own repo)](https://github.com/Washiki/foil)
+- [Rainbow-Fart.vim(Now in its own repo)](https://github.com/Washiki/rainbow-fart.vim)]
 - [Foxy](#Foxy)  
 - [Templates and Configs](###-template)  
 ---
@@ -76,7 +77,7 @@ Does NOT initialize git by default, most projects don't make it out , though pro
 
 Script for Powershell on windows based systems. <br /> Toggles your proxy.
 
-Opens the proxy login on your browser (im sorry, i still use chrome)
+Opens the proxy login on your browser (By default, is set to open for CHROME)
 
 Also, outputs the ProxyEnable, ProxyServer and ProxyOverride variables. 
 
@@ -92,7 +93,7 @@ Only exists because typing `vim` is more convenient and faster than dual booting
 
 ### Features 
 
-#### Keybinds and Commands
+#### Keybinds and Custom Commands
 - Maps `<leader>` to the `,` .
 	 It just works. Space as a leader was my earlier one, but it caused conflicts, so i settled on this.
 
