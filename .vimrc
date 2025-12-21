@@ -6,6 +6,55 @@
 "    sorbet 
 "    habamax
 
+"the vars of the plugin must be set before its loaded. 
+let g:vimtex_view_method = 'general' "general just allows to call the general viewer, which you can pass with params (which we need_
+let g:vimtex_view_general_viewer = 'wslview'" this passes to the windows file viewers. 
+"let g:vimtex_view_general_viewer = 'xdg-open'" 
+let g:vimtex_view_general_options = '' "this is the param that had to be passed, because im opening the windows pdf viewer 
+"Everything works, but i can't get vimtex to open the file by itself. 
+
+"remapping the leader. IMportant. 
+let g:mapleader = ","
+
+" NEOCLIDE 
+"this function mplements the nice backspace autocomplete
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+"tab is autocomplete 
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+
+"prevoius key is Shift + tab, good to know 
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+
+" EMMET 
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" <c-y> to expand emmet
 
 "this calls the plugins
 call plug#begin('~/.vim/plugged')
@@ -58,53 +107,6 @@ Plug 'danilo-augusto/vim-afterglow'
 
 " Plugins are now loaded after the call end]
 call plug#end()
-
-"remapping the leader. IMportant. 
-let g:mapleader = ","
-"auto indent code keyremap 
-
-nnoremap <leader>f <Cmd>normal! gg=G<CR>
-
-" NEOCLIDE 
-"this function mplements the nice backspace autocomplete
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-"tab is autocomplete 
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-
-"prevoius key is Shift + tab, good to know 
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-
-" EMMET 
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-" <c-y> to expand emmet
-
 
 " TAGS 
 function! UpdateTags()
@@ -231,7 +233,6 @@ set cursorline
 colorscheme afterglow
 
 
-"this is some insane reddit wizardy;
 "by setting this, i can have vim take the terminal's bg as is, and hence;
 "Translucent cool looking vim! Tada~
 highlight Normal cterm=NONE ctermbg=NONE ctermfg=NONE
@@ -240,6 +241,9 @@ highlight Normal cterm=NONE ctermbg=NONE ctermfg=NONE
 
 nnoremap <CR> :noh<CR>
 "clear highlight when i do find the search term and press enter. 
+
+"auto indent code keyremap 
+nnoremap <leader>f <Cmd>normal! gg=G<CR>
 
 " template for cp 
 command! Newcp :0r ~/myElves/template.cpp 
@@ -250,6 +254,8 @@ command! Newcp :0r ~/myElves/template.cpp
 "have the + register)
 command! Copy %w !clip.exe 
 
+"alias for the nerdtree thing 
+command! File :NERDTree
 "update the tags if we're in a project. 
 autocmd BufWritePost * silent! call UpdateTags()
 
@@ -269,6 +275,4 @@ au VimEnter * Copilot disable
 "for cpp cp, take shit from the template. 
 "au VimEnter * Newcp
 
-"sets colorscheme 
-"colorscheme seoul256
 
