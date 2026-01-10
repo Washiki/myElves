@@ -201,6 +201,13 @@ set copyindent
 "smartindent technically does take care of things, but copyindent had to be
 "used for ensuring proper nesting
 
+"settnig default tabs
+set tabstop=4 "manual tab, actual width of \t
+set shiftwidth=4 "autoindent value 
+set softtabstop=4 "visual rep of tab in the sheet
+"do :retab in a file to reload tabs
+
+
 "shows the word being matched 
 set showmatch
 "highlights the words being searched
