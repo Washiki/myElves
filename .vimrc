@@ -56,6 +56,17 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 " <c-y> to expand emmet
 
+" random shit area 
+"call popup_notification("Hi Washiki!", #{ line: 1, col: 1, time: 3000 })
+"call just calls a function. how is it different from au? au also gets
+"triggers and keypresses automated. 
+
+call popup_create(["Yahallo","Washiki!"],{'time': 3000,'border':[],'close':'button', 'line' : 1, 'col' : &columns - 10})
+"&columns is the terminal viewwidth
+
+
+" random shit area ends 
+
 "this calls the plugins
 call plug#begin('~/.vim/plugged')
 
@@ -201,11 +212,11 @@ set copyindent
 "smartindent technically does take care of things, but copyindent had to be
 "used for ensuring proper nesting
 
-"settnig default tabs
-set tabstop=4 "manual tab, actual width of \t
-set shiftwidth=4 "autoindent value 
-set softtabstop=4 "visual rep of tab in the sheet
-"do :retab in a file to reload tabs
+"default tab lengths 
+set tabstop=4 "manual tab for space conversion (if you use expandtab_)
+set softtabstop=4 "visual representation (can be seperate from infile expantab)
+set shiftwidth=4 "for autoindent to inherent tabs 
+"do : retab for readjusting the tabs on a file 
 
 
 "shows the word being matched 
@@ -281,5 +292,3 @@ au VimEnter * Copilot disable
 
 "for cpp cp, take shit from the template. 
 "au VimEnter * Newcp
-
-
