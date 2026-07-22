@@ -50,7 +50,6 @@ function! ShowDocumentation()
   endif
 endfunction
 
-
 " EMMET 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
@@ -62,8 +61,9 @@ autocmd FileType html,css EmmetInstall
 "triggers and keypresses automated. 
 
 call popup_create(["Yahallo","Washiki!"],{'time': 3000,'border':[],'close':'button', 'line' : 1, 'col' : &columns - 10})
-"&columns is the terminal viewwidth
 
+
+"&columns is the terminal viewwidth
 
 " random shit area ends 
 
@@ -71,7 +71,7 @@ call popup_create(["Yahallo","Washiki!"],{'time': 3000,'border':[],'close':'butt
 call plug#begin('~/.vim/plugged')
 
 "for the bad times. 
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 
 "intellisense implement, it seems to be fine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -82,14 +82,22 @@ Plug 'Washiki/rainbow-fart.vim'
 "token highlighting 
 Plug 'RRethy/vim-illuminate'
 
-"Parenthesis colouring? Goofypana?
-Plug 'kien/rainbow_parentheses.vim'
+"Markdown support
+Plug 'preservim/vim-markdown'  
 
+"Telescope like fuzzy finding
+Plug 'junegunn/fzf'
+
+"Clipboard functionality. I mean registers work but yes 
+Plug 'svermeulen/vim-easyclip'
+
+"surrounding stuff. better for surround. tags
+Plug 'machakann/vim-sandwich'
 "emmet
 Plug 'mattn/emmet-vim'
 
-"a faster commenter
-Plug 'preservim/nerdcommenter'
+"Fast comment. Tim pope himself built a better one. 
+Plug 'tpope/vim-commentary'
 
 "color highlighting
 Plug 'ap/vim-css-color'
@@ -97,24 +105,34 @@ Plug 'ap/vim-css-color'
 "noncompatible on steroids 
 Plug 'tpope/vim-sensible'
 
+"Git. In vim. Tim pop my man.
+Plug 'tpope/vim-fugitive'
+
+"Git changes 
+Plug 'airblade/vim-gitgutter'
+
 "random theme i like 
 Plug 'junegunn/seoul256.vim'
 
 "LATEX IN VIM JUST LIKE THAT ONE MATH TUT
 Plug 'lervag/vimtex'
 
-"sidebar file explorer 
-Plug 'preservim/nerdtree'
+"sidebar file explorer , b etter then netrw or NERDTree
+"Getting a better explorer,fern
+Plug 'lambdalisue/vim-fern'
 
 "vimlike surrounds and bracketing 
 Plug 'tpope/vim-surround'
 
-"File analysis/ error checking. the W E stuff 
+"File analysis/ error checking.Ale comes  built in with an lsp. 
 "Plug 'dense-analysis/ale'
 "Makes things excruciatingly slow. I can't take it. 
 
 "better colorscheme, im tired boss. 
 Plug 'danilo-augusto/vim-afterglow'
+
+"wakatime integration because ofcourse
+Plug 'wakatime/vim-wakatime'
 
 " Plugins are now loaded after the call end]
 call plug#end()
@@ -185,7 +203,8 @@ set path +=** "searches subfolder
 set incsearch
 "ignores the case when searching
 set ignorecase
-
+"there's salso this other setting. does the same?
+set smartcase
 "clears the line when you refresh vim 
 "viminfo =
 
@@ -245,11 +264,9 @@ set laststatus=2
 set number relativenumber
 "the cursor effects
 set cursorline
-"set cursorcolumn 
+set cursorcolumn 
 
-"colorscheme seoul256
-colorscheme afterglow
-
+colorscheme sorbet 
 
 "by setting this, i can have vim take the terminal's bg as is, and hence;
 "Translucent cool looking vim! Tada~
@@ -270,25 +287,12 @@ command! Newcp :0r ~/myElves/template.cpp
 
 "copy to system clipboard (i couldn't go throuhg the hassle of bulding vim to
 "have the + register)
-command! Copy %w !clip.exe 
+"command! Copy %w !clip.exe 
+"Above is a windows terminal specific thing only.
 
-"alias for the nerdtree thing 
-command! File :NERDTree
 "update the tags if we're in a project. 
 autocmd BufWritePost * silent! call UpdateTags()
 
 "autocorrections
 inoreabbrev teh the 
 
-" STARTUP BEHAVIOR
-
-"open nerdtree by default, typing it is way too hard man
-"au VimEnter *  NERDTree
-"put me directly in the main editor 
-"autocmd VimEnter * execute "normal! \<C-w>w"
-
-"disable copilot by default. I hate it. 
-au VimEnter * Copilot disable
-
-"for cpp cp, take shit from the template. 
-"au VimEnter * Newcp
