@@ -83,7 +83,7 @@ Plug 'Washiki/rainbow-fart.vim'
 Plug 'RRethy/vim-illuminate'
 
 "Markdown support
-Plug 'preservim/vim-markdown'  
+"Plug 'preservim/vim-markdown'  
 
 "Telescope like fuzzy finding
 Plug 'junegunn/fzf'
@@ -191,6 +191,9 @@ set signcolumn=number
 set encoding=utf-8
 set updatetime=300
 
+set textwidth=120
+" maximum, non pasted line width. 
+
 "vi breaks shit. this makes it not be like vi.
 set nocompatible
 
@@ -287,8 +290,29 @@ command! Newcp :0r ~/myElves/template.cpp
 
 "copy to system clipboard (i couldn't go throuhg the hassle of bulding vim to
 "have the + register)
-"command! Copy %w !clip.exe 
+"command! C %w !clip.exe 
 "Above is a windows terminal specific thing only.
+
+"Same as above, clipboard for x11 based systems via xclip (download it
+"earlier)
+command! -range Copy echo "You're not in visual mode."
+"we define the default behavior of the command, and pass the "range" as a
+"param to the command here. Default behavior is printing as defined.
+
+vnoremap :C y:<C-u>call system("xclip -selection clipboard -d " . $DISPLAY, getreg('"'))<CR>:echo len(split(getreg('"'), '\n')) . " lines copied yay"<CR>
+" C is now the command for copying after selecting something in visual mode. 
+
+"Now, some help : The command line is cleared entirely by Ctrl u. 
+"'< and '> are the visual selection's start and end pointers.
+
+"After the command , yanking the text, we go b ack to the command line, which
+"always contains the particular visual makrers. ctrl u clears them, then does
+"a system call is then made to xclip which handles it. 
+"After this, we go back to command line, then show how many lines got copied. 
+"The one liner is llm generated. sad.
+
+
+
 
 "update the tags if we're in a project. 
 autocmd BufWritePost * silent! call UpdateTags()
