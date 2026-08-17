@@ -1,3 +1,4 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -8,6 +9,7 @@ case $- in
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
@@ -18,11 +20,12 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
-# update LINES and COLUMNS.
+# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
-shopt -s globstar
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -73,22 +76,23 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+
 fi
 
 # colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
+alias nvim='~/Downloads/nvim-linux-x86_64.appimage'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -113,22 +117,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
-#===========================================#
-#startup at home dir
-cd ~
-
-#cp template; has an analog in vim as well.  
-function Newcp(){ cp ~/myElves/template.cpp $1;}
-
+# adding custm aliases
 alias crun='~/myElves/crun.sh'
 alias proj='~/myElves/proj.sh'
 alias foil='~/myElves/foil.sh'
-
+alias foxy='source ~/foxy.sh'
 #don't forget to run chmod +x for them
 
 #updating each command into the thing 
@@ -151,23 +144,40 @@ then
 else
 	echo "set completion-ignore-case On" > ~/.inputrc
 fi 
-#===========================================#
 
-# Oh my posh, because im wsling in the windows terminal like that.
-eval "$(oh-my-posh init bash --config ~/.poshthemes/dhokha.omp.json)"
+bat() {
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/utkarsh/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/utkarsh/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/utkarsh/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/utkarsh/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+	#by default bash doesn't recursively expand aliases because. ofcourse.
+	#can force it to do it however 
+	shopt -s expand_aliases 
 
+	local defaultargs=("-l" "conf" "--paging=never" "--style=plain")
+	# $# is count of args passed (not including name of command). 
+	if [ $# -eq 0 ]; then
+		batcat
+		return 
+	fi 
+
+	#type searches passed arg , if binary then 1 else 0
+	# dev null ti silence errors
+	if type "$1" >/dev/null 2>&1; then
+		local passedcmd="$1"
+		
+		#super powerful command, essentially just kills first passed arg. 
+		#2 shifts to 1, 3 to 2 etc
+		shift 
+		#now because of this , #1 points to the rest of the arg we gave.
+		eval "$passedcmd" \"\$@\" | batcat "${defaultargs[@]}"
+		# #@ is the entirety of the command string
+		# eval generally escapes on quoets so need to provide them
+		# as escape characters
+	else 
+		batcat "$@"
+	fi
+
+}
+
+export PATH=$PATH:/home/honey/.spicetify
+
+[ -f "/home/honey/.ghcup/env" ] && . "/home/honey/.ghcup/env" # ghcup-env
+. "$HOME/.cargo/env"
