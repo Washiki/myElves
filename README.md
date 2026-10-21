@@ -83,7 +83,11 @@ Also, outputs the ProxyEnable, ProxyServer and ProxyOverride variables.
 
 Just type `foxy` in the shell. 
 
-~~Stands for F#ck Proxy~~
+**NOTE**: For using spotify, add the *network proxy details in the spotify preference* files.
+
+- if using the .deb or .rpm (native/curl build), you're done!
+- if using snap or flatpak, edit the `SPFY_PREF` variable at the start to the location of the pref file 
+
 
 ---
 ## Vim Config 
